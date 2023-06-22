@@ -2,6 +2,7 @@ package org.lessons.java.springlamiapizzeriacrud.controller;
 
 import org.lessons.java.springlamiapizzeriacrud.model.Pizza;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,5 +21,12 @@ public class MainController {
         menu.add(new Pizza("Crudo e bufala", "mozzarella di bufala, pomodoro, crudo di Parma", "https://gastronomiailcapriccio.it/wp-content/uploads/2022/09/Pizza-fatta-in-casa-1-scaled-1.jpg", new BigDecimal("8.50")));
         menu.add(new Pizza("Salamino", "mozzarella, pomodoro, salamino piccante", "https://images.pexels.com/photos/4773769/pexels-photo-4773769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", new BigDecimal("7.50")));
 
+        return menu;
+    }
+
+    @GetMapping
+    public String index(Model model){
+        model.addAttribute("menu", getMenu());
+        return "index";
     }
 }
