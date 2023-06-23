@@ -2,23 +2,23 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:replace="fragments :: head"></th:block>
-    <title>Pizza</title>
+    <title>Menu Pizzeria</title>
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
-        <h1> Menu </h1>
+<div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+    <h1> Menu </h1>
 
-        <div class="card mt-3" style="width: 18rem;">
-            <ul class="list-group list-group-flush">
-                <li th:each="pizza : ${menu}"  class="list-group-item">
-                    <h3 th:text="${pizza.name}"> </h3>
-                    <img >
-                    <p th:text="${pizza.description}"></p>
-                    <p th:text="${pizza.price}"></p>
-                </li>
-            </ul>
-        </div>
+    <div class="card mt-3" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li th:each="pizza : ${menu}" class="list-group-item">
+                <h3 th:text="${pizza.name}"></h3>
+                <!--                <img th:src="${pizza.urlPhoto}">-->
+                <p th:text="${pizza.description}"></p>
+                <p th:text="${pizza.price}"></p>
+            </li>
+        </ul>
     </div>
+</div>
 </body>
 </html>
