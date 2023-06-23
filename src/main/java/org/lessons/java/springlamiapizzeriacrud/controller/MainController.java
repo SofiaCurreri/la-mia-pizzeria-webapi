@@ -22,6 +22,9 @@ public class MainController {
     @GetMapping
     public String menu(Model model) {
         List<Pizza> menu = pizzaRepository.findAll();
+        if (menu.isEmpty()) {
+            model.addAttribute("message", "Il menù è vuoto, mi dispiace!");
+        }
         model.addAttribute("menu", menu);
         return "index";
     }
