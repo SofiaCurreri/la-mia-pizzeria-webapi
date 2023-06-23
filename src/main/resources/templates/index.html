@@ -9,16 +9,24 @@
 <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
     <h1> Menu </h1>
 
-    <div class="card mt-3" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-            <li th:each="pizza : ${menu}" class="list-group-item">
-                <h3 th:text="${pizza.name}"></h3>
-                <!--                <img th:src="${pizza.urlPhoto}">-->
-                <p th:text="${pizza.description}"></p>
-                <p th:text="${pizza.price}"></p>
-            </li>
-        </ul>
-    </div>
+    <table class="table mt-5">
+        <thead>
+        <tr>
+            <th scope="col">Pizze</th>
+            <th scope="col">Ingredienti</th>
+            <th scope="col">Prezzo</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="pizza : ${menu}">
+            <td th:text="${pizza.name}"></td>
+            <td th:text="${pizza.description}"></td>
+            <td th:text="&euro; + ' ' + ${pizza.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 </body>
 </html>
