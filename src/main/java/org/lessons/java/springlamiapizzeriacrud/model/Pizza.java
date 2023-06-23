@@ -1,18 +1,26 @@
 package org.lessons.java.springlamiapizzeriacrud.model;
 
-import java.math.BigDecimal;
+import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Entity //identifica la classe Pizza come entità
+@Table(name = "pizzas") //rinomino tabella al plurale
 public class Pizza {
+    @Id //rende Integer id chiave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //per autoincrement
+    private Integer id;
+
+    @Column(nullable = false)
     private String name;
     private String description;
     private String urlPhoto;
+    @Column(nullable = false)
     private BigDecimal price;
+    private LocalDateTime createdAt;
 
-    public Pizza(String name, String description, String urlPhoto, BigDecimal price) {
-        this.name = name;
-        this.description = description;
-        this.urlPhoto = urlPhoto;
-        this.price = price;
+    public Pizza() {
     }
 
     public String getName() {

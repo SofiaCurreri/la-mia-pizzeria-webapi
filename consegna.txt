@@ -13,3 +13,13 @@ Implementiamo quindi il controller con il metodo index che restituisce una view 
 L’elenco potrebbe essere vuoto : in quel caso dobbiamo mostrare un messaggio che indichi all’utente che non ci sono
 pizze presenti nella nostra applicazione.
 Gestiamo i componenti riutilizzabili con i fragments.
+
+
+Lo scopo di oggi è quello di mostrare i dettagli di una singola pizza.
+Ogni pizza dell’elenco avrà quindi un pulsante ( o un’area cliccabile) che ci porterà a una pagina che mostrerà i
+dettagli della pizza scelta.
+Dobbiamo quindi inviare l’id come parametro dell’URL, recuperarlo nel metodo del controller, caricare i dati della pizza
+ ricercata e passarli come model.
+La view a quel punto li mostrerà all’utente con la grafica che preferiamo.
+Nella pagina con l’elenco delle pizze aggiungiamo un campo di testo che se compilato filtrerà le pizze (lato server)
+ aventi come titolo quello inserito dall’utente.
