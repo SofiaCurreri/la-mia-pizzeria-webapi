@@ -4,6 +4,14 @@
     <th:block th:replace="fragments :: head(title='Dettaglio Pizza')"></th:block>
 </head>
 <body>
-<h1 th:text="${pizza}"></h1>
+<th:block th:replace="fragments :: navbar"></th:block>
+
+<div class="container mt-5" th:object="${pizza}">
+    <h1 th:text="*{name}"></h1>
+    <img src="@{*.urlPhoto}">
+    <h3 th:text="|Ingredients: *{description}|"></h3>
+    <h3 th:text="|Price: &euro; *{price}|"></h3>
+</div>
+
 </body>
 </html>
