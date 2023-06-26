@@ -56,6 +56,7 @@ public class MainController {
             model.addAttribute("message", "Il menù è vuoto, mi dispiace!");
         }
         model.addAttribute("menu", menu);
+        model.addAttribute("searchInput", searchString == null ? "" : searchString);
         return "index";
     }
 
