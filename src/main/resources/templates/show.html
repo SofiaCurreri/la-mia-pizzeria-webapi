@@ -8,9 +8,11 @@
 
 <div class="container mt-5" th:object="${pizza}">
     <h1 th:text="*{name}"></h1>
-    <img src="@{*.urlPhoto}">
-    <h3 th:text="|Ingredients: *{description}|"></h3>
-    <h3 th:text="|Price: &euro; *{price}|"></h3>
+    <img th:src="*{urlPhoto}" class="my-3" style="width: 400px;">
+    <dt> Ingredients</dt>
+    <dd th:text="*{description}"></dd>
+    <dt>Price</dt>
+    <dd th:text="|&euro; *{price}|"></dd>
 </div>
 
 </body>
