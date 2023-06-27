@@ -49,11 +49,17 @@
         <h3>No results for that pizza, sorry <i class="fa-regular fa-face-frown"></i></h3>
     </div>
 
-    <div class="mt-5">
-        <form class="d-flex" method="GET" th:action="@{/pizzas}">
-            <input class="form-control me-2" type="search" placeholder="Search by name" name="keyword" th:value="${searchInput}">
-            <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
+    <div class="w-100 mt-5 d-flex justify-content-between">
+        <div>
+            <a class="btn btn-success" th:href="@{/pizzas/create}">New Pizza</a>
+        </div>
+
+        <div>
+            <form class="d-flex" method="GET" th:action="@{/pizzas}">
+                <input class="form-control me-2" type="search" placeholder="Search by name" name="keyword" th:value="${searchInput}">
+                <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
     </div>
 
 </div>
