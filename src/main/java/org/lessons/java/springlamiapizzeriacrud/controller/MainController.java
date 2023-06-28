@@ -142,7 +142,7 @@ public class MainController {
         }
         Pizza pizzaToDelete = result.get();
         pizzaRepository.delete(pizzaToDelete);
-        redirectAttributes.addFlashAttribute("message", "Pizza" + pizzaToDelete.getName() + " deleted!");
+        redirectAttributes.addFlashAttribute("message", "Pizza " + pizzaToDelete.getName() + " deleted!");
         return "redirect:/pizzas";
     }
 
