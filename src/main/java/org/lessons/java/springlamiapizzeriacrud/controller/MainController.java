@@ -1,11 +1,13 @@
 package org.lessons.java.springlamiapizzeriacrud.controller;
 
+import jakarta.validation.Valid;
 import org.lessons.java.springlamiapizzeriacrud.model.Pizza;
 import org.lessons.java.springlamiapizzeriacrud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -83,8 +85,12 @@ public class MainController {
 
     //controller che gestisce la post del form coi dati della pizza
     @PostMapping("/create")
-    //ci aspettiamod i ricevere un obj di tipo Pizza, i cui attributi vengono riempiti dai dati inseriti nel form
-    public String store(@ModelAttribute("pizza") Pizza formPizza) {
+    //ci aspettiamo di ricevere un obj di tipo Pizza, i cui attributi vengono riempiti dai dati inseriti nel form
+    public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            //ci sono stati errori
+            return "create"; //ritorno template form ma con pizza precaricata
+        }
         formPizza.setCreatedAt(LocalDateTime.now());
 
         //save fa create sql se obj con quella PK non esiste, altrimenti fa update
