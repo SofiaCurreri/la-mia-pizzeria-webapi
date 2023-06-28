@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,7 +83,13 @@ public class MainController {
 
     //controller che gestisce la post del form coi dati della pizza
     @PostMapping("/create")
-    public String store() {
+    //ci aspettiamod i ricevere un obj di tipo Pizza, i cui attributi vengono riempiti dai dati inseriti nel form
+    public String store(@ModelAttribute("pizza") Pizza formPizza) {
+        formPizza.setCreatedAt(LocalDateTime.now());
+
+        //save fa create sql se obj con quella PK non esiste, altrimenti fa update
+        pizzaRepository.save(formPizza);
+
         //se tutto va bene rimando alla lista delle pizze
         return "redirect:/pizzas";
     }

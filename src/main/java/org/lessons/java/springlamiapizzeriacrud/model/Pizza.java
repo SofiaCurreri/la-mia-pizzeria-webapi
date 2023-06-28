@@ -58,4 +58,12 @@ public class Pizza {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
