@@ -121,9 +121,26 @@ public class MainController {
         }
         Pizza pizzaToEdit = result.get(); //vecchia versione pizza
         //nuova versione pizza = formPizza
+
+        //valido formPizza
+        if (bindingResult.hasErrors()) {
+            return "edit";
+        }
+
         formPizza.setId(pizzaToEdit.getId());
         formPizza.setCreatedAt(pizzaToEdit.getCreatedAt());
         pizzaRepository.save(formPizza);
+        return "redirect:/pizzas";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza with id = " + id + " not found :(");
+        }
+        Pizza pizzaToDelete = result.get();
+        pizzaRepository.delete(pizzaToDelete);
         return "redirect:/pizzas";
     }
 
