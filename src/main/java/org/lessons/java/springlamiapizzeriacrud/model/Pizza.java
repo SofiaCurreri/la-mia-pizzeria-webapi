@@ -1,6 +1,7 @@
 package org.lessons.java.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,6 +21,7 @@ public class Pizza {
     private String description;
     private String urlPhoto;
     @NotNull(message = "Price must not be null")
+    @DecimalMin("0.00")
     @Column(nullable = false)
     private BigDecimal price;
     private LocalDateTime createdAt;
