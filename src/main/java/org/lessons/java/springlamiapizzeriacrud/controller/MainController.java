@@ -80,7 +80,7 @@ public class MainController {
     public String create(Model model) {
         //aggiungo al model l' attributo pizza contenente un Pizza vuoto
         model.addAttribute("pizza", new Pizza());
-        return "create";
+        return "edit"; //template unico per create e edit
     }
 
     //controller che gestisce la post del form coi dati della pizza
@@ -98,5 +98,16 @@ public class MainController {
 
         //se tutto va bene rimando alla lista delle pizze
         return "redirect:/pizzas";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        //verificare se esiste pizza con quell' id
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza with id = " + id + " not found :(");
+        }
+        model.addAttribute("pizza", result.get());
+        return "edit";
     }
 }
