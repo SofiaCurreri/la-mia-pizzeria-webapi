@@ -21,7 +21,7 @@ public class Pizza {
     private String description;
     private String urlPhoto;
     @NotNull(message = "Price must not be null")
-    @DecimalMin("0.00")
+    @DecimalMin(value = "0.00", message = "Price must be > 0.00 €")
     @Column(nullable = false)
     private BigDecimal price;
     private LocalDateTime createdAt;
