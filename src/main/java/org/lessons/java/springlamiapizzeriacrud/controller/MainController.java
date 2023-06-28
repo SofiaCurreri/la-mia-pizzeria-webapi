@@ -110,4 +110,21 @@ public class MainController {
         model.addAttribute("pizza", result.get());
         return "edit";
     }
+
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable Integer id,
+                         @Valid @ModelAttribute("pizza") Pizza formPizza,
+                         BindingResult bindingResult) {
+        Optional<Pizza> result = pizzaRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza with id = " + id + " not found :(");
+        }
+        Pizza pizzaToEdit = result.get(); //vecchia versione pizza
+        //nuova versione pizza = formPizza
+        formPizza.setId(pizzaToEdit.getId());
+        formPizza.setCreatedAt(pizzaToEdit.getCreatedAt());
+        pizzaRepository.save(formPizza);
+        return "redirect:/pizzas";
+    }
+
 }

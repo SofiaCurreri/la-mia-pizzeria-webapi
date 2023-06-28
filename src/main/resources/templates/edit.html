@@ -10,7 +10,7 @@
     <h1 th:text="${isEdit ? 'Edit Pizza ' + pizza.name : 'New Pizza'}"></h1>
 
     <form
-            th:with="formAction=${isEdit ? '/pizzas/edit' + pizza.id : '/pizzas/create'}"
+            th:with="formAction=${isEdit ? '/pizzas/edit/' + pizza.id : '/pizzas/create'}"
             th:action="@{${formAction}}"
             th:object="${pizza}"
             method="post"
