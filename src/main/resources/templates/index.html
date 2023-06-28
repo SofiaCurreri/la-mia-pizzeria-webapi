@@ -6,7 +6,9 @@
 
 <body>
 <th:block th:replace="fragments :: navbar"></th:block>
+
 <div class="container d-flex justify-content-center align-items-center flex-column mt-5">
+    <div class="alert alert-danger" role="alert"  th:text="${message}" th:if=""></div>
 
     <h2 class="my-5"> Menu </h2>
     <!--    <div class="d-flex flex-row">-->
