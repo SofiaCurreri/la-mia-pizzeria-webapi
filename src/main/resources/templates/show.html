@@ -8,12 +8,49 @@
 <th:block th:replace="fragments :: navbar"></th:block>
 
 <div class="container mt-5" th:object="${pizza}">
-    <h1 th:text="*{name}"></h1>
-    <img th:src="*{urlPhoto}" class="my-3" style="width: 400px;">
-    <dt> Ingredients</dt>
-    <dd th:text="*{description}"></dd>
-    <dt>Price</dt>
-    <dd th:text="|&euro; *{price}|"></dd>
+    <section>
+        <h1 th:text="*{name}"></h1>
+        <img th:src="*{urlPhoto}" class="my-3" style="width: 400px;">
+        <dt> Ingredients</dt>
+        <dd th:text="*{description}"></dd>
+        <dt>Price</dt>
+        <dd th:text="|&euro; *{price}|"></dd>
+    </section>
+
+    <section class="mt-5">
+        <h2>
+            <i class="fa-solid fa-circle-chevron-right me-3 text-info"></i>
+            Special Deals
+            <i class="fa-solid fa-circle-chevron-left ms-3 text-info"></i>
+        </h2>
+
+        <table class="table mt-4 " >
+            <thead>
+            <tr>
+                <th scope="col">Title </i></th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Expiry Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+              <tr th:each="special : ${pizza.specialDeals}" th:object="${special}"  class="align-middle">
+                <td th:text="*{title}"></td>
+                <td th:text="*{#temporals.format(startingDate, 'dd/MM/yyyy')}"></td>
+                <td th:text="*{#temporals.format(expiryDate, 'dd/MM/yyyy')}"></td>
+                <td class="d-flex align-items-center ">
+                    <a th:href="@{|/pizzas/${pizza.id}|}" class="mx-2"><i class="fa-solid fa-pizza-slice text-warning"></i></a>
+                    <a th:href="@{|/pizzas/edit/${pizza.id}|}" class="mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form th:action="@{|/pizzas/delete/${pizza.id}|}" method="post">
+                        <button type="submit" class="btn text-danger"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </section>
+
 </div>
 
 </body>

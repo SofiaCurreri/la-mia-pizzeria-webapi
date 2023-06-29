@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity //identifica la classe Pizza come entità
@@ -26,8 +27,8 @@ public class Pizza {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "pizza")
-    private List<SpecialDeal> specialDeals;
+    @OneToMany(mappedBy = "pizza") //pizza è il nome dell' attributo con annptation Many to One in SpecialDeal.java
+    private List<SpecialDeal> specialDeals = new ArrayList<>();
     private LocalDateTime createdAt;
 
     public Pizza() {

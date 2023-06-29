@@ -1,6 +1,8 @@
 package org.lessons.java.springlamiapizzeriacrud.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,17 +15,20 @@ public class SpecialDeal {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //per autoincrement
     private Integer id;
 
+    @NotBlank
     @Column(nullable = false)
     private String title;
+    @NotNull
     @Column(nullable = false)
     private LocalDate startingDate;
+    @NotNull
     @Column(nullable = false)
     private LocalDate expiryDate;
-    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "pizza_id", nullable = false)
     private Pizza pizza;
+    private LocalDateTime createdAt;
 
     public Integer getId() {
         return id;
