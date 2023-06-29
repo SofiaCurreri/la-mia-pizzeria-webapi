@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity //identifica la classe Pizza come entità
 @Table(name = "pizzas") //rinomino tabella al plurale
@@ -24,6 +25,9 @@ public class Pizza {
     @DecimalMin(value = "0.00", message = "Price must be > 0.00 €")
     @Column(nullable = false)
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "pizza")
+    private List<SpecialDeal> specialDeals;
     private LocalDateTime createdAt;
 
     public Pizza() {
@@ -67,6 +71,14 @@ public class Pizza {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<SpecialDeal> getSpecialDeals() {
+        return specialDeals;
+    }
+
+    public void setSpecialDeals(List<SpecialDeal> specialDeals) {
+        this.specialDeals = specialDeals;
     }
 
     public LocalDateTime getCreatedAt() {
