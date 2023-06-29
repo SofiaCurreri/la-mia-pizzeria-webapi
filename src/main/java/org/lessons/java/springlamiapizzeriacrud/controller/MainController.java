@@ -2,7 +2,9 @@ package org.lessons.java.springlamiapizzeriacrud.controller;
 
 import jakarta.validation.Valid;
 import org.lessons.java.springlamiapizzeriacrud.model.Pizza;
+import org.lessons.java.springlamiapizzeriacrud.model.SpecialDeal;
 import org.lessons.java.springlamiapizzeriacrud.repository.PizzaRepository;
+import org.lessons.java.springlamiapizzeriacrud.repository.SpecialDealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class MainController {
     @Autowired
     //quando serve pizzaRepository al mio controller, crea da solo un' istanza e me lo passa; equivale ad iniettare la dipendenza da PizzaRepository
     private PizzaRepository pizzaRepository;
+
+    @Autowired
+    private SpecialDealRepository specialDealRepository;
 
 //    @GetMapping
 //    public String menu(Model model) {
@@ -143,6 +148,51 @@ public class MainController {
         Pizza pizzaToDelete = result.get();
         pizzaRepository.delete(pizzaToDelete);
         redirectAttributes.addFlashAttribute("message", "Pizza " + pizzaToDelete.getName() + " deleted!");
+        return "redirect:/pizzas";
+    }
+
+    @GetMapping("/edit/deal/{id}")
+    public String editDeal(@PathVariable Integer id, Model model) {
+        //verificare se esiste deal con quell' id
+        Optional<SpecialDeal> result = specialDealRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
+        }
+        model.addAttribute("deal", result.get());
+        return "editDeal";
+    }
+
+    @PostMapping("/edit/deal/{id}")
+    public String updateDeal(@PathVariable Integer id,
+                             @Valid @ModelAttribute("deal") SpecialDeal formDeal,
+                             BindingResult bindingResult) {
+        Optional<SpecialDeal> result = specialDealRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
+        }
+        SpecialDeal dealToEdit = result.get(); //vecchio deal
+        //nuova versione deal = formDeal
+
+        //valido formDeal
+        if (bindingResult.hasErrors()) {
+            return "editDeal";
+        }
+
+        formDeal.setId(dealToEdit.getId());
+        formDeal.setCreatedAt(dealToEdit.getCreatedAt());
+        specialDealRepository.save(formDeal);
+        return "redirect:/pizzas";
+    }
+
+    @PostMapping("/delete/deal/{id}")
+    public String deleteDeal(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        Optional<SpecialDeal> result = specialDealRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
+        }
+        SpecialDeal dealToDelete = result.get();
+        specialDealRepository.delete(dealToDelete);
+        redirectAttributes.addFlashAttribute("message", "Special Deal " + dealToDelete.getTitle() + " deleted!");
         return "redirect:/pizzas";
     }
 
