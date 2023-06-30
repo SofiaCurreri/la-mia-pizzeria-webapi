@@ -17,7 +17,8 @@
         <dd th:text="|&euro; *{price}|"></dd>
     </section>
 
-    <section class="mt-5">
+    <hr class="my-5">
+    <section>
         <h2>
             <i class="fa-solid fa-circle-chevron-right me-3 text-info"></i>
             Special Deals
@@ -54,7 +55,7 @@
         </div>
 
         <div class="mt-5">
-            <a class="btn btn btn-outline-dark" th:href="@{/deals/create}">New Deal</a>
+            <a class="btn btn btn-outline-dark" th:href="@{/deals/create(pizzaId=${pizza.id})}">New Deal</a>
         </div>
 
     </section>
