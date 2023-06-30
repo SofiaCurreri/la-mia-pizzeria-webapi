@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <th:block th:replace="fragments :: head(title='Dettaglio Pizza')"></th:block>
+    <th:block th:replace="fragments :: head(title='Pizza Details')"></th:block>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
             <i class="fa-solid fa-circle-chevron-left ms-3 text-info"></i>
         </h2>
 
-        <table class="table mt-4 " >
+        <table class="table mt-4 " th:if="${pizza.specialDeals.size() > 0}" >
             <thead>
             <tr>
                 <th scope="col">Title </i></th>
@@ -49,9 +49,14 @@
             </tbody>
         </table>
 
-        <div class="mt-4">
-            <a class="btn btn btn-outline-dark" th:href="@{/pizzas/create}">New Deal</a>
+        <div class="alert alert-info mt-4" th:unless="${pizza.specialDeals.size() > 0}">
+            <h3>No special deals, sorry <i class="fa-regular fa-face-frown"></i></h3>
         </div>
+
+        <div class="mt-5">
+            <a class="btn btn btn-outline-dark" th:href="@{/deals/create}">New Deal</a>
+        </div>
+
     </section>
 
 </div>

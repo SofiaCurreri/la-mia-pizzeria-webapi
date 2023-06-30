@@ -27,7 +27,9 @@ public class Pizza {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "pizza") //pizza è il nome dell' attributo con annptation Many to One in SpecialDeal.java
+    @OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE})
+    //pizza è il nome dell' attributo con annotation Many to One in SpecialDeal.java
+    //inizializzo come lista vuota per evitare situa in cui lista sia null
     private List<SpecialDeal> specialDeals = new ArrayList<>();
     private LocalDateTime createdAt;
 

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:replace="fragments :: head(title='New Special Deal')"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments :: navbar"></th:block>
+
+<div class="container mt-5">
+    <h1> Create a Special Deal</h1>
+
+    <!--    <form-->
+    <!--            th:action="@{|/pizzas/edit/deal/${deal.id}|}"-->
+    <!--            th:object="${deal}"-->
+    <!--            method="post"-->
+    <!--            id="deal-form"-->
+    <!--            class="row mt-5"-->
+    <!--    >-->
+    <!--        &lt;!&ndash;per vedere elenco errori&ndash;&gt;-->
+    <!--        &lt;!&ndash;        <div th:if="${#fields.hasErrors()}">&ndash;&gt;-->
+    <!--        &lt;!&ndash;            <ul>&ndash;&gt;-->
+    <!--        &lt;!&ndash;                <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>&ndash;&gt;-->
+    <!--        &lt;!&ndash;            </ul>&ndash;&gt;-->
+    <!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+
+    <!--        <div class="col-6 my-2">-->
+    <!--            <label class="form-label" for="deal-title">Title*</label>-->
+    <!--            <input class="form-control" type="text" id="deal-title" th:field="*{title}" th:errorClass="is-invalid">-->
+    <!--            <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">-->
+    <!--                <ul>-->
+    <!--                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>-->
+    <!--                </ul>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="col-6 my-2">-->
+    <!--            <label class="form-label" for="start-date">Starting Date*</label>-->
+    <!--            <input class="form-control" type="date" id="start-date" th:field="*{startingDate}"-->
+    <!--                   th:errorClass="is-invalid">-->
+    <!--            <div th:if="${#fields.hasErrors('startingDate')}" class="invalid-feedback">-->
+    <!--                <ul>-->
+    <!--                    <li th:each="err : ${#fields.errors('startingDate')}" th:text="${err}"></li>-->
+    <!--                </ul>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="col-12 my-2">-->
+    <!--            <label class="form-label" for="expiry-date">Expiry Date*</label>-->
+    <!--            <input class="form-control" type="date" id="expiry-date" th:field="*{expiryDate}"-->
+    <!--                   th:errorClass="is-invalid">-->
+    <!--            <div th:if="${#fields.hasErrors('expiryDate')}" class="invalid-feedback">-->
+    <!--                <ul>-->
+    <!--                    <li th:each="err : ${#fields.errors('expiryDate')}" th:text="${err}"></li>-->
+    <!--                </ul>-->
+    <!--            </div>-->
+    <!--        </div>-->
+
+
+    <!--        <div class="col-12 my-4">-->
+    <!--            <button class="btn btn-success" type="submit">Save</button>-->
+    <!--            <a th:href="@{/pizzas}" class="btn btn-secondary mx-1">Cancel</a>-->
+    <!--        </div>-->
+    <!--    </form>-->
+</div>
+</body>
+</html>
