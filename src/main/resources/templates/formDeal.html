@@ -7,15 +7,18 @@
 <th:block th:replace="fragments :: navbar"></th:block>
 
 <div class="container mt-5">
-    <h1> Create a Special Deal for Pizza <span th:text="${specialDeal.pizza.name}"> </span> !</h1>
+    <h1 th:text="|Create a Special Deal for Pizza ${specialDeal.pizza.name}|"></h1>
 
     <form
-            th:action="@{/deals/create}"
+            th:with="formAction=${specialDeal.id != null ? '/deals/edit' + specialDeal.id : '/deals/create'}"
+            th:action="@{${formAction}}"
             th:object="${specialDeal}"
             method="post"
             id="deal-form"
             class="row mt-5"
     >
+        <!--input hidden per inviare insieme ai campi del form anche la pizza-->
+        <input type="hidden" th:field="*{pizza}">
         <div class="col-12 my-2">
             <label class="form-label" for="deal-title">Title*</label>
             <input class="form-control" type="text" id="deal-title" th:field="*{title}" th:errorClass="is-invalid">

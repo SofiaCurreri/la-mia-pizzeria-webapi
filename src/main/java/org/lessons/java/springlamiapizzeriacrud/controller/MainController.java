@@ -150,49 +150,5 @@ public class MainController {
         return "redirect:/pizzas";
     }
 
-//    @GetMapping("/edit/deal/{id}")
-//    public String editDeal(@PathVariable Integer id, Model model) {
-//        //verificare se esiste deal con quell' id
-//        Optional<SpecialDeal> result = specialDealRepository.findById(id);
-//        if (result.isEmpty()) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
-//        }
-//        model.addAttribute("deal", result.get());
-//        return "editDeal";
-//    }
-//
-//    @PostMapping("/edit/deal/{id}")
-//    public String updateDeal(@PathVariable Integer id,
-//                             @Valid @ModelAttribute("deal") SpecialDeal formDeal,
-//                             BindingResult bindingResult) {
-//        Optional<SpecialDeal> result = specialDealRepository.findById(id);
-//        if (result.isEmpty()) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
-//        }
-//        SpecialDeal dealToEdit = result.get(); //vecchio deal
-//        //nuova versione deal = formDeal
-//
-//        //valido formDeal
-//        if (bindingResult.hasErrors()) {
-//            return "editDeal";
-//        }
-//
-//        formDeal.setId(dealToEdit.getId());
-//        formDeal.setCreatedAt(dealToEdit.getCreatedAt());
-//        specialDealRepository.save(formDeal);
-//        return "redirect:/pizzas";
-//    }
-
-//    @PostMapping("/delete/deal/{id}")
-//    public String deleteDeal(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-//        Optional<SpecialDeal> result = specialDealRepository.findById(id);
-//        if (result.isEmpty()) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
-//        }
-//        SpecialDeal dealToDelete = result.get();
-//        specialDealRepository.delete(dealToDelete);
-//        redirectAttributes.addFlashAttribute("message", "Special Deal " + dealToDelete.getTitle() + " deleted!");
-//        return "redirect:/pizzas";
-//    }
 
 }

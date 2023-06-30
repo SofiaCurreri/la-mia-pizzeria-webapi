@@ -41,8 +41,8 @@
                 <td th:text="*{#temporals.format(startingDate, 'dd/MM/yyyy')}"></td>
                 <td th:text="*{#temporals.format(expiryDate, 'dd/MM/yyyy')}"></td>
                 <td class="d-flex align-items-center ">
-                    <a th:href="@{|/pizzas/edit/deal/${special.id}|}" class="mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <form th:action="@{|/pizzas/delete/deal/${special.id}|}" method="post">
+                    <a th:href="@{|/deals/edit/*{id}|}" class="mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form th:action="@{|/deals/delete/*{id}|}" method="post">
                         <button type="submit" class="btn text-danger"><i class="fa-solid fa-trash-can"></i></button>
                     </form>
                 </td>
@@ -54,7 +54,7 @@
             <h3>No special deals, sorry <i class="fa-regular fa-face-frown"></i></h3>
         </div>
 
-        <div class="mt-5">
+        <div class="my-5">
             <a class="btn btn btn-outline-dark" th:href="@{/deals/create(pizzaId=${pizza.id})}">New Deal</a>
         </div>
 
