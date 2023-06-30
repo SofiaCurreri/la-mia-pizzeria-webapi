@@ -10,7 +10,7 @@
     <h1 th:text="|Create a Special Deal for Pizza ${specialDeal.pizza.name}|"></h1>
 
     <form
-            th:with="formAction=${specialDeal.id != null ? '/deals/edit' + specialDeal.id : '/deals/create'}"
+            th:with="formAction=${specialDeal.id != null ? '/deals/edit/' + specialDeal.id : '/deals/create'}"
             th:action="@{${formAction}}"
             th:object="${specialDeal}"
             method="post"

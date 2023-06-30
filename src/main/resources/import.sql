@@ -10,5 +10,5 @@ INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `create
 INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-06-30', '3', '2023-06-27', '2023-06-29 15:58:00.000000', 'Pizza + gnocco fritto a 9€');
 INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-07-10', '3', '2023-07-01', '2023-06-29 15:58:00.000000', 'Pizza + birra a 10€');
 INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-07-15', '3', '2023-07-13', '2023-06-29 15:58:00.000000', '2x12€');
-INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-08-12', '4', '2023-08-16', '2023-06-29 15:58:00.000000', 'Pizza + bibita a 8€');
+INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-08-16', '4', '2023-08-12', '2023-06-29 15:58:00.000000', 'Pizza + bibita a 8€');
 INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-07-04', '5', '2023-06-27', '2023-06-29 15:58:00.000000', 'Pizza + patatine fritte a 8,50€');

@@ -85,13 +85,12 @@ public class DealController {
 
     @PostMapping("/delete/{id}")
     public String deleteDeal(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-        Optional<SpecialDeal> result = specialDealRepository.findById(id);
-        if (result.isEmpty()) {
+        Optional<SpecialDeal> dealToDelete = specialDealRepository.findById(id);
+        if (dealToDelete.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
         }
-        SpecialDeal dealToDelete = result.get();
-        specialDealRepository.delete(dealToDelete);
-        redirectAttributes.addFlashAttribute("message", "Special Deal " + dealToDelete.getTitle() + " deleted!");
-        return "redirect:/pizzas";
+        specialDealRepository.delete(dealToDelete.get());
+        redirectAttributes.addFlashAttribute("message", "Special Deal " + dealToDelete.get().getTitle() + " deleted!");
+        return "redirect:/pizzas/" + dealToDelete.get().getPizza().getId();
     }
 }
