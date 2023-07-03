@@ -37,8 +37,8 @@
             <td th:text="${pizza.name}"></td>
             <td th:text="${pizza.description}"></td>
             <td th:text="&euro; + ' ' + ${pizza.price}"></td>
-            <td class="d-flex align-items-center ">
-                <a th:href="@{|/pizzas/${pizza.id}|}" class="mx-2"><i class="fa-solid fa-pizza-slice text-warning"></i></a>
+            <td class="d-flex align-items-center">
+                <a th:href="@{|/pizzas/${pizza.id}|}" class="me-3"><i class="fa-solid fa-pizza-slice text-warning"></i></a>
                 <a th:href="@{|/pizzas/edit/${pizza.id}|}" class="mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
 
                 <!-- gestisco il fatto che non si possano cancellare quelle pizze che hanno delle offerte in corso-->

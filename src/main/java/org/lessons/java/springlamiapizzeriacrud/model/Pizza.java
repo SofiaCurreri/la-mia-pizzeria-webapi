@@ -31,6 +31,10 @@ public class Pizza {
     //pizza è il nome dell' attributo con annotation Many to One in SpecialDeal.java
     //inizializzo come lista vuota per evitare situa in cui lista sia null
     private List<SpecialDeal> specialDeals = new ArrayList<>();
+
+    @ManyToMany()
+    @JoinTable(name = "pizza_ingredients", joinColumns = @JoinColumn(name = "pizza_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private List<Ingredient> ingredients;
     private LocalDateTime createdAt;
 
     public Pizza() {
@@ -90,5 +94,13 @@ public class Pizza {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
