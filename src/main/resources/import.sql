@@ -12,3 +12,14 @@ INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `create
 INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-07-15', '3', '2023-07-13', '2023-06-29 15:58:00.000000', '2x12€');
 INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-08-16', '4', '2023-08-12', '2023-06-29 15:58:00.000000', 'Pizza + bibita a 8€');
 INSERT INTO `special_deals` (`expiry_date`, `pizza_id`, `starting_date`, `created_at`, `title`) VALUES ('2023-07-04', '5', '2023-06-27', '2023-06-29 15:58:00.000000', 'Pizza + patatine fritte a 8,50€');
+
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'mozzarella');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'pomodoro');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'funghi');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'prosciutto cotto');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'crudo di Parma');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'mortadella');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'pesto di pistacchi');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'burrata');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'salamino piccante');
+INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'mozzarella di Bufala');

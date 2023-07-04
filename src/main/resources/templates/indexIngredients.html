@@ -9,6 +9,48 @@
 
 <div class="container mt-5">
     <h1>Ingredients</h1>
+
+    <div class="row mt-5 justify-content-between">
+        <!--Lista ingredienti-->
+        <div class="col-4 mt-2" th:if="${ingredients.size > 0}">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="ing : ${ingredients}" th:object="${ing}">
+                    <h4 th:text="*{name}"></h4>
+                </li>
+            </ul>
+        </div>
+
+        <!--Form creazione/edit ingredienti-->
+        <div class="col-5" th:if="${ingredients.size > 0}">
+            <form
+                    th:action="@{/ingredients/save}"
+                    id="category-form"
+                    method="post"
+                    th:object="${ingredientObj}">
+
+                <div class="col-12 my-2">
+                    <label class="form-label" for="ingredient-name">Name*</label>
+                    <input class="form-control" type="text" id="ingredient-name" th:field="*{name}"
+                           th:errorClass="is-invalid">
+                    <div class="form-text">Must not be empty</div>
+                    <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-12 my-4">
+                    <button class="btn btn-success" type="submit">Save</button>
+                    <button class="btn btn-secondary" type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="alert alert-info mt-5" th:unless="${ingredients.size > 0}">
+            <h4>There are no ingredients, sorry <i class="fa-regular fa-face-frown"></i></h4>
+        </div>
+    </div>
 </div>
 
 </body>
