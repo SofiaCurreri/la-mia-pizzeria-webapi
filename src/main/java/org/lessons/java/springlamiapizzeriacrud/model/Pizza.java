@@ -32,8 +32,8 @@ public class Pizza {
     //inizializzo come lista vuota per evitare situa in cui lista sia null
     private List<SpecialDeal> specialDeals = new ArrayList<>();
 
-    @ManyToMany()
-    @JoinTable(name = "pizza_ingredients", joinColumns = @JoinColumn(name = "pizza_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    @ManyToMany
+    @JoinTable(name = "pizza_ingredient", joinColumns = @JoinColumn(name = "pizza_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private List<Ingredient> ingredients;
     private LocalDateTime createdAt;
 

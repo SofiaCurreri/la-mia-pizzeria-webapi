@@ -23,3 +23,11 @@ INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.00
 INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'burrata');
 INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'salamino piccante');
 INSERT INTO `ingredients` (`created_at`, `name`) VALUES ('2023-07-04 14:25:18.000000', 'mozzarella di Bufala');
+
+INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('8', '2');
+INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('9', '4');
+INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('6', '2');
+INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('7', '2');
+INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('5', '3');
+INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('10', '3');
+INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('4', '5');

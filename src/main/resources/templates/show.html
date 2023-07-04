@@ -11,10 +11,15 @@
     <section>
         <h1 th:text="*{name}"></h1>
         <img th:src="*{urlPhoto}" class="my-3" style="width: 400px;">
-        <dt> Ingredients</dt>
+        <dt> Description</dt>
         <dd th:text="*{description}"></dd>
         <dt>Price</dt>
         <dd th:text="|&euro; *{price}|"></dd>
+        <dt>Ingredients</dt>
+        <ul th:if="*{ingredients.size() > 0}">
+            <li th:each="ing : *{ingredients}" th:text="${ing.name}"></li>
+        </ul>
+        <div th:unless="*{ingredients.size() > 0}" class="alert alert-info mt-3">No ingredients</div>
     </section>
 
     <hr class="my-5">
