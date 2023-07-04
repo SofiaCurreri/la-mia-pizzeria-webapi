@@ -73,6 +73,11 @@ public class DealController {
     public String updateDeal(@PathVariable Integer id,
                              @Valid @ModelAttribute("specialDeal") SpecialDeal formDeal,
                              BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            //se ci sono errori ricreo template form
+            return "formDeal";
+        }
+
         Optional<SpecialDeal> dealToEdit = specialDealRepository.findById(id);
         if (dealToEdit.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Special Deal with id = " + id + " not found :(");
