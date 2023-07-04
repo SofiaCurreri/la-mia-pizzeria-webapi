@@ -2,6 +2,7 @@ package org.lessons.java.springlamiapizzeriacrud.controller;
 
 import jakarta.validation.Valid;
 import org.lessons.java.springlamiapizzeriacrud.model.Pizza;
+import org.lessons.java.springlamiapizzeriacrud.repository.IngredientRepository;
 import org.lessons.java.springlamiapizzeriacrud.repository.PizzaRepository;
 import org.lessons.java.springlamiapizzeriacrud.repository.SpecialDealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class MainController {
 
     @Autowired
     private SpecialDealRepository specialDealRepository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
 //    @GetMapping
 //    public String menu(Model model) {
@@ -85,16 +89,18 @@ public class MainController {
     public String create(Model model) {
         //aggiungo al model l' attributo pizza contenente un Pizza vuoto
         model.addAttribute("pizza", new Pizza());
+        model.addAttribute("ingredientList", ingredientRepository.findAll());
         return "edit"; //template unico per create e edit
     }
 
     //controller che gestisce la post del form coi dati della pizza
     @PostMapping("/create")
     //ci aspettiamo di ricevere un obj di tipo Pizza, i cui attributi vengono riempiti dai dati inseriti nel form
-    public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
+    public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             //ci sono stati errori
-            return "create"; //ritorno template form ma con pizza precaricata
+            model.addAttribute("ingredientList", ingredientRepository.findAll());
+            return "edit"; //ritorno template form ma con pizza precaricata
         }
         formPizza.setCreatedAt(LocalDateTime.now());
 
@@ -113,13 +119,15 @@ public class MainController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza with id = " + id + " not found :(");
         }
         model.addAttribute("pizza", result.get());
+        model.addAttribute("ingredientList", ingredientRepository.findAll());
         return "edit";
     }
 
     @PostMapping("/edit/{id}")
     public String update(@PathVariable Integer id,
                          @Valid @ModelAttribute("pizza") Pizza formPizza,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         Model model) {
         Optional<Pizza> result = pizzaRepository.findById(id);
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza with id = " + id + " not found :(");
@@ -129,6 +137,7 @@ public class MainController {
 
         //valido formPizza
         if (bindingResult.hasErrors()) {
+            model.addAttribute("ingredientList", ingredientRepository.findAll());
             return "edit";
         }
 
