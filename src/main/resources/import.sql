@@ -31,3 +31,14 @@ INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('7', '2');
 INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('5', '3');
 INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('10', '3');
 INSERT INTO `pizza_ingredient` (`ingredient_id`, `pizza_id`) VALUES ('4', '5');
+
+INSERT INTO `roles` (`id`, `name`) VALUES (1, 'ADMIN');
+INSERT INTO `roles` (`id`, `name`) VALUES (2, 'USER');
+
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `password`) VALUES (1, 'itsme@mario.com', 'Mario', 'Rossi', '{noop}mario');
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `password`) VALUES (2, 'luigi@verdi.com', 'Luigi', 'Verdi', '{noop}luigi');
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `password`) VALUES (3, 'princess@peach.com', 'Peach', 'Princess', '{noop}peach');
+
+INSERT INTO `users_roles` (`user_id`, `roles_id`) VALUES (1, 1);
+INSERT INTO `users_roles` (`user_id`, `roles_id`) VALUES (2, 2);
+INSERT INTO `users_roles` (`user_id`, `roles_id`) VALUES (3, 2);
