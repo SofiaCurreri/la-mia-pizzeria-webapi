@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:replace="fragments :: head(title='Pizza Details')"></th:block>
 </head>
@@ -36,7 +36,7 @@
                 <th scope="col">Title </i></th>
                 <th scope="col">Start Date</th>
                 <th scope="col">Expiry Date</th>
-                <th>Actions</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
             </tr>
             </thead>
 
@@ -45,7 +45,7 @@
                 <td th:text="*{title}"></td>
                 <td th:text="*{#temporals.format(startingDate, 'dd/MM/yyyy')}"></td>
                 <td th:text="*{#temporals.format(expiryDate, 'dd/MM/yyyy')}"></td>
-                <td class="d-flex align-items-center ">
+                <td class="d-flex align-items-center " sec:authorize="hasAuthority('ADMIN')">
                     <a th:href="@{|/deals/edit/*{id}|}" class="mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
                     <form th:action="@{|/deals/delete/*{id}|}" method="post">
                         <button type="submit" class="btn text-danger"><i class="fa-solid fa-trash-can"></i></button>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="my-5">
-            <a class="btn btn btn-outline-dark" th:href="@{/deals/create(pizzaId=${pizza.id})}">New Deal</a>
+            <a class="btn btn btn-outline-dark" th:href="@{/deals/create(pizzaId=${pizza.id})}" sec:authorize="hasAuthority('ADMIN')">New Deal</a>
         </div>
 
     </section>

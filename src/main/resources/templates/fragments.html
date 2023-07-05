@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:fragment="head(title)">
         <meta charset="UTF-8">
@@ -39,7 +39,7 @@
                         <a class="nav-link active mx-4" aria-current="page" th:href="@{/pizzas}"><h4>Menu</h4></a>
                     </li>
                     <li class="nav-item"></li>
-                    <a class="nav-link active" th:href="@{/ingredients}"><h4>Ingredients</h4></a>
+                    <a class="nav-link active" th:href="@{/ingredients}" sec:authorize="hasAuthority('ADMIN')"><h4>Ingredients</h4></a>
                     </li>
                 </ul>
             </div>

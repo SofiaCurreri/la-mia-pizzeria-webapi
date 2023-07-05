@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:replace="fragments :: head(title='Menu')"></th:block>
 </head>
@@ -39,13 +39,14 @@
             <td th:text="&euro; + ' ' + ${pizza.price}"></td>
             <td class="d-flex align-items-center">
                 <a th:href="@{|/pizzas/${pizza.id}|}" class="me-3"><i class="fa-solid fa-pizza-slice text-warning"></i></a>
-                <a th:href="@{|/pizzas/edit/${pizza.id}|}" class="mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a th:href="@{|/pizzas/edit/${pizza.id}|}" class="mx-2" sec:authorize="hasAuthority('ADMIN')"><i class="fa-solid fa-pen-to-square"></i></a>
 
                 <!-- gestisco il fatto che non si possano cancellare quelle pizze che hanno delle offerte in corso-->
                 <form
                         th:action="@{|/pizzas/delete/${pizza.id}|}"
                         method="post"
                         th:if="${pizza.specialDeals.size() == 0}"
+                        sec:authorize="hasAuthority('ADMIN')"
                 >
                     <button type="submit" class="btn text-danger"><i class="fa-solid fa-trash-can"></i></button>
                 </form>
@@ -62,7 +63,7 @@
 
     <div class="w-100 mt-5 d-flex justify-content-between">
         <div>
-            <a class="btn btn-success" th:href="@{/pizzas/create}">New Pizza</a>
+            <a class="btn btn-success" th:href="@{/pizzas/create}" sec:authorize="hasAuthority('ADMIN')">New Pizza</a>
         </div>
 
         <div>
