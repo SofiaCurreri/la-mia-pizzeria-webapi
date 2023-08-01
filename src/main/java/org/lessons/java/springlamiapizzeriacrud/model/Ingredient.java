@@ -1,5 +1,6 @@
 package org.lessons.java.springlamiapizzeriacrud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -18,6 +19,7 @@ public class Ingredient {
     @Column(nullable = false)
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "ingredients")
     private List<Pizza> pizza = new ArrayList<>();
     private LocalDateTime createdAt;
