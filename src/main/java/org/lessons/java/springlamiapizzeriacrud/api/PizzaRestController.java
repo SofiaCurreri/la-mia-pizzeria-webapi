@@ -54,7 +54,7 @@ public class PizzaRestController {
     //con la put devo passare per forza id della risorsa da modificare + body(=dati che andranno a sostituire i dati della risorsa),
     //quindi va passato l' oggetto intero anche se viene cambiato un solo campo
     @PutMapping("/{id}")
-    public Pizza update(@PathVariable Integer id, @RequestBody Pizza pizza) {
+    public Pizza update(@Valid @PathVariable Integer id, @RequestBody Pizza pizza) {
         pizza.setId(id);
         return pizzaRepository.save(pizza);
     }
