@@ -35,4 +35,26 @@ public class PizzaRestController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+    //servizio per creare nuova pizza
+    //solo post e put hanno body, ovvero RequestBody
+    @PostMapping
+    public Pizza create(@RequestBody Pizza pizza) {
+        return pizzaRepository.save(pizza);
+    }
+
+    //servizio per cancellare pizza
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        pizzaRepository.deleteById(id);
+    }
+
+    //servizio per modificare pizza
+    //con la put devo passare per forza id della risorsa da modificare + body(=dati che andranno a sostituire i dati della risorsa),
+    //quindi va passato l' oggetto intero anche se viene cambiato un solo campo
+    @PutMapping("/{id}")
+    public Pizza update(@PathVariable Integer id, @RequestBody Pizza pizza) {
+        pizza.setId(id);
+        return pizzaRepository.save(pizza);
+    }
 }
