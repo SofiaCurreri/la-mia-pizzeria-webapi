@@ -57,10 +57,12 @@ public class SecurityConfiguration {
                 .requestMatchers("/pizzas/**").hasAnyAuthority("ADMIN", "USER")
                 .requestMatchers("/deals/**").hasAuthority("ADMIN")
                 //per dire che tutte le PostMapping sono solo x admin
-                .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/pizzas/**").hasAuthority("ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
                 .and().logout();
+        //disabilito csrf per poter invocare api Postman
+        http.csrf().disable();
         return http.build();
     }
 }
