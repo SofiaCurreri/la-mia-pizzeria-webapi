@@ -1,5 +1,6 @@
 package org.lessons.java.springlamiapizzeriacrud.api;
 
+import jakarta.validation.Valid;
 import org.lessons.java.springlamiapizzeriacrud.model.Pizza;
 import org.lessons.java.springlamiapizzeriacrud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class PizzaRestController {
     //servizio per creare nuova pizza
     //solo post e put hanno body, ovvero RequestBody
     @PostMapping
-    public Pizza create(@RequestBody Pizza pizza) {
+    public Pizza create(@Valid @RequestBody Pizza pizza) {
         return pizzaRepository.save(pizza);
     }
 
