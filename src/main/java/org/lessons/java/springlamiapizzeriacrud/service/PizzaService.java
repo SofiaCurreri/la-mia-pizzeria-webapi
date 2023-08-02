@@ -44,6 +44,18 @@ public class PizzaService {
 
         return pizzaRepository.save(pizzaToPersist);
     }
-    
+
+    //metodo per cancellare pizza
+    public void delete(Integer id) throws PizzaNotFoundException {
+        Optional<Pizza> pizzaOpt = pizzaRepository.findById(id);
+        if (pizzaOpt.isPresent()) pizzaRepository.deleteById(id);
+        else throw new PizzaNotFoundException("Pizza with id = " + id + " not found :(");
+    }
+
+    //metodo per modificare pizza
+    public Pizza update(Integer id, Pizza pizza) {
+        pizza.setId(id);
+        return pizzaRepository.save(pizza);
+    }
 
 }

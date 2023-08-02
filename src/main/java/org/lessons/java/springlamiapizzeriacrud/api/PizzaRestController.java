@@ -60,7 +60,7 @@ public class PizzaRestController {
     //servizio per cancellare pizza
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
-        pizzaRepository.deleteById(id);
+        pizzaService.delete(id);
     }
 
     //servizio per modificare pizza
@@ -68,8 +68,7 @@ public class PizzaRestController {
     //quindi va passato l' oggetto intero anche se viene cambiato un solo campo
     @PutMapping("/{id}")
     public Pizza update(@Valid @PathVariable Integer id, @RequestBody Pizza pizza) {
-        pizza.setId(id);
-        return pizzaRepository.save(pizza);
+        return pizzaService.update(id, pizza);
     }
 
     //Pageable dimostrativo. Caratteristiche di solito: page, size e sort
