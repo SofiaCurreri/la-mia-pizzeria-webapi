@@ -4,6 +4,9 @@ import jakarta.validation.Valid;
 import org.lessons.java.springlamiapizzeriacrud.model.Pizza;
 import org.lessons.java.springlamiapizzeriacrud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -57,5 +60,13 @@ public class PizzaRestController {
     public Pizza update(@Valid @PathVariable Integer id, @RequestBody Pizza pizza) {
         pizza.setId(id);
         return pizzaRepository.save(pizza);
+    }
+
+    //Pageable dimostrativo. Caratteristiche di solito: page, size e sort
+    @GetMapping("/page")
+    public Page<Pizza> page(@RequestParam(defaultValue = "3") Integer size, @RequestParam(defaultValue = "0") Integer page) {
+        //creo pageable a partire da size e page
+        Pageable pageable = PageRequest.of(page, size);
+        return pizzaRepository.findAll(pageable);
     }
 }
