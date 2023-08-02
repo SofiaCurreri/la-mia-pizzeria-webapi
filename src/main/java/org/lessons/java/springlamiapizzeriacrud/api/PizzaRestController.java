@@ -1,8 +1,10 @@
 package org.lessons.java.springlamiapizzeriacrud.api;
 
 import jakarta.validation.Valid;
+import org.lessons.java.springlamiapizzeriacrud.exceptions.PizzaNotFoundException;
 import org.lessons.java.springlamiapizzeriacrud.model.Pizza;
 import org.lessons.java.springlamiapizzeriacrud.repository.PizzaRepository;
+import org.lessons.java.springlamiapizzeriacrud.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,21 +24,29 @@ public class PizzaRestController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
+    @Autowired
+    private PizzaService pizzaService;
+
     //servizio per avere lista pizze
     @GetMapping
-    public List<Pizza> index() {
-        return pizzaRepository.findAll();
+    public List<Pizza> index(@RequestParam Optional<String> keyword) {
+        return pizzaService.getAll(keyword);
     }
 
     //servizio per dettaglio singola Pizza
     @GetMapping("/{id}")
     public Pizza get(@PathVariable Integer id) {
         //cerco pizza con quell' id sul db
-        Optional<Pizza> pizza = pizzaRepository.findById(id);
-        if (pizza.isPresent()) {
-            return pizza.get();
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        Optional<Pizza> pizza = pizzaRepository.findById(id);
+//        if (pizza.isPresent()) {
+//            return pizza.get();
+//        } else {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        }
+        try {
+            return pizzaService.getById(id);
+        } catch (PizzaNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
@@ -44,7 +54,7 @@ public class PizzaRestController {
     //solo post e put hanno body, ovvero RequestBody
     @PostMapping
     public Pizza create(@Valid @RequestBody Pizza pizza) {
-        return pizzaRepository.save(pizza);
+        return pizzaService.create(pizza);
     }
 
     //servizio per cancellare pizza

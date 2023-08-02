@@ -91,4 +91,4 @@ speciale può essere collegata a una sola pizza, e una pizza può essere collega
  modificare una pizza esistente
  cancellare una pizza
  Queste operazioni devono poter essere eseguite tramite PostMan, non preoccupiamoci quindi della parte di frontend per ora.
- :regalo:BONUS: il controller con la lista delle pizze deve essere paginato
+ BONUS: il controller con la lista delle pizze deve essere paginato
