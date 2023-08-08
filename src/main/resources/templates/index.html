@@ -28,16 +28,16 @@
             <th scope="col">Pizzas </i></th>
             <th scope="col">Ingredients</th>
             <th scope="col">Price</th>
-            <th>Actions</th>
+            <th scope="col" class="text-center">Actions</th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="pizza : ${menu}">
-            <td th:text="${pizza.name}"></td>
-            <td th:text="${pizza.description}"></td>
-            <td th:text="&euro; + ' ' + ${pizza.price}"></td>
-            <td class="d-flex align-items-center">
+            <td th:text="${pizza.name}" class="align-middle"></td>
+            <td th:text="${pizza.description}" class="align-middle"></td>
+            <td th:text="&euro; + ' ' + ${pizza.price}" class="align-middle"></td>
+            <td class="align-middle text-center">
                 <a th:href="@{|/pizzas/${pizza.id}|}" class="me-3"><i class="fa-solid fa-pizza-slice text-warning"></i></a>
                 <a th:href="@{|/pizzas/edit/${pizza.id}|}" class="mx-2" sec:authorize="hasAuthority('ADMIN')"><i class="fa-solid fa-pen-to-square"></i></a>
 
