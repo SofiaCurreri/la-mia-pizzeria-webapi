@@ -29,3 +29,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+h1 {
+  color: rgb(148, 9, 9);
+}
